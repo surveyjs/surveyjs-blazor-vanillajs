@@ -18,7 +18,7 @@ npm i
 dotnet run
 ```
 
-Open http://localhost:5208/ in your web browser.
+Open http://localhost:7219/ in your web browser.
 
 > NOTE: This application uses [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0). Make sure that you have ASP.NET Core Runtime 8.0 installed on your machine.
 
