@@ -1,0 +1,41 @@
+﻿@page "/formbuilder"
+@rendermode InteractiveServer
+@implements IDisposable
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Form Builder</PageTitle>
+
+<h1>SurveyJS Creator</h1>
+<div id="surveyCreatorContainer" style="height:80vh; width:100%;"></div>
+
+@code {
+    private DotNetObjectReference<FormBuilder>? dotNetRef;
+
+    private string surveyJson = @"{
+        ""elements"": [
+            { ""name"": ""FirstName"", ""title"": ""Enter your first name:"", ""type"": ""text"" },
+            { ""name"": ""LastName"", ""title"": ""Enter your last name:"", ""type"": ""text"" }
+        ]
+    }";
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("initializeSurveyCreator", surveyJson, dotNetRef);
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnSurveySaved(string surveyJson)
+    {
+        // Example: persist surveyJson to database
+        Console.WriteLine("Survey saved: " + surveyJson);
+
+    }
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose();
+    }
+}

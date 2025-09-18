@@ -1,0 +1,70 @@
+﻿@page "/tabulator"
+@using System.Text.Json
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+<h1>Survey Tabulator</h1>
+<p>Tabulator loaded</p>
+<div id="loadingIndicator">Loading...</div>
+<div id="surveyTabulatorContainer" style="width:100%; height:80vh;"></div>
+
+@code {
+    private DotNetObjectReference<Tabulator>? dotNetRef;
+
+    // Same survey JSON as Dashboard
+    private string surveyJson = @"{
+      ""pages"": [
+        {
+          ""name"": ""promotion"",
+          ""elements"": [
+            { ""type"": ""rating"", ""name"": ""nps"", ""title"": ""How likely are you to recommend our product?"", ""rateMin"": 0, ""rateMax"": 10 },
+            { ""type"": ""radiogroup"", ""name"": ""did-recommend"", ""title"": ""Have you recommended our product?"", ""choices"": [ { ""value"": 1, ""text"": ""Yes"" }, { ""value"": 0, ""text"": ""No"" } ] }
+          ]
+        }
+      ]
+    }";
+
+    private List<Dictionary<string, object>> surveyResponses = new();
+
+    protected override void OnInitialized()
+    {
+        var rand = new Random();
+        for (int i = 0; i < 50; i++)
+        {
+            surveyResponses.Add(new Dictionary<string, object>
+                {
+                    ["nps"] = rand.Next(0, 11),
+                    ["did-recommend"] = rand.Next(0, 2)
+                });
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+            var surveyResponsesJson = JsonSerializer.Serialize(surveyResponses);
+
+            await JSRuntime.InvokeVoidAsync(
+                "initializeSurveyTabulator",
+                surveyJson,
+                surveyResponsesJson,
+                dotNetRef
+            );
+        }
+    }
+
+    [JSInvokable]
+    public Task OnTabulatorRendered()
+    {
+        Console.WriteLine("Tabulator rendered callback received in Blazor");
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose();
+    }
+}

@@ -1,0 +1,63 @@
+﻿@page "/pdfsurvey"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+<h1>Survey PDF Example</h1>
+<div id="surveyPdfContainer" style="width:100%; height:80vh;"></div>
+
+@code {
+    private DotNetObjectReference<SurveyPDF>? dotNetRef;
+
+    private string surveyJson = @"{
+      ""pages"": [
+        {
+          ""name"": ""qualities"",
+          ""elements"": [
+            { ""type"": ""rating"", ""name"": ""affordable"", ""title"": ""Affordable?"", ""rateMax"": 5 },
+            { ""type"": ""rating"", ""name"": ""easy-to-use"", ""title"": ""Easy to use?"", ""rateMax"": 5 }
+          ]
+        },
+        {
+          ""name"": ""feedback"",
+          ""elements"": [
+            { ""type"": ""comment"", ""name"": ""suggestions"", ""title"": ""Any suggestions?"" },
+            { ""type"": ""text"", ""name"": ""email"", ""title"": ""Your email"" }
+          ]
+        }
+      ]
+    }";
+
+    private string surveyDataJson = @"{
+      ""affordable"": 3,
+      ""easy-to-use"": 5,
+      ""suggestions"": ""More tutorials would help."",
+      ""email"": ""john.doe@example.com""
+    }";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync(
+                "initializeSurveyPdf",
+                surveyJson,
+                surveyDataJson,
+                dotNetRef
+            );
+        }
+    }
+
+    [JSInvokable]
+    public Task OnSurveyPdfRendered()
+    {
+        Console.WriteLine("Survey PDF rendered callback received in Blazor");
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        dotNetRef?.Dispose();
+    }
+}
