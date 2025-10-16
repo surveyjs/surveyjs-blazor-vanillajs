@@ -1,0 +1,117 @@
+{
+  "completedHtml": "<p style=\"font-size:24px;\">Thank you for completing the survey! (please wait for analytics to load ...)<p>",
+  "pages": [
+    {
+      "name": "page_info",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "organization_type",
+          "title": "Which of the following best describes you or your organization?",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "ISV",
+              "text": "ISV (building commercial/shrink-wrapped software)"
+            },
+            {
+              "value": "Consulting",
+              "text": "Software consulting firm (providing development services to other organizations)"
+            },
+            {
+              "value": "Custom",
+              "text": "Custom software development (as a freelancer/contractor)"
+            },
+            {
+              "value": "In-house",
+              "text": "In-house software development"
+            },
+            {
+              "value": "Hobbyist",
+              "text": "Hobbyist (developing apps for personal use)"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "radiogroup",
+          "name": "developer_count",
+          "visibleIf": "{organization_type} != 'Hobbyist'",
+          "title": "How many software developers are in your organization?",
+          "choices": [ "1", "2", "3-5", "6-10", "> 10" ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "vertical_market",
+          "visibleIf": "{organization_type} != 'Hobbyist'",
+          "title": "Which vertical market does your product serve?",
+          "hasOther": true,
+          "choices": [
+            "Automotive",
+            "Banking",
+            "Consumer",
+            "Education",
+            "Engineering",
+            "Energy",
+            "Fast-moving consumer goods",
+            "Financial",
+            "FinTech",
+            "Food and beverage",
+            "Government (federal, state, local)",
+            "Healthcare",
+            "Insurance",
+            "Legal",
+            "Manufacturing",
+            "Media",
+            "Online",
+            "Raw materials",
+            "Real estate",
+            "Religion",
+            "Retail",
+            "Jewelry",
+            "Technology",
+            "Telecommunications",
+            "Transportation (Travel)",
+            "Electronics",
+            "Not-for-profit"
+          ],
+          "colCount": 4
+        },
+        {
+          "type": "radiogroup",
+          "name": "product_discovering",
+          "title": "How did you discover our product?",
+          "hasOther": true,
+          "choices": [ "Search engine", "GitHub", "Friend or colleague", "Reddit", "Medium", "Twitter", "Facebook" ],
+          "otherText": "Other",
+          "colCount": 3
+        }
+      ]
+    },
+    {
+      "name": "page_libraries_usage",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "javascript_frameworks",
+          "title": "Which JavaScript frameworks do you use?",
+          "hasOther": true,
+          "choices": [ "React", "Angular", "jQuery", "Vue", "Meteor", "Ember", "Backbone", "Knockout", "Aurelia", "Polymer", "Mithril" ],
+          "choicesOrder": "asc",
+          "otherText": "Other",
+          "colCount": 3
+        },
+        {
+          "type": "checkbox",
+          "name": "backend_language",
+          "title": "Which web backend programming languages do you use?",
+          "hasOther": true,
+          "choices": [ "Java", "Python", "Node.js", "Go", "Django", "C#", "Ruby" ],
+          "choicesOrder": "asc",
+          "otherText": "Other",
+          "colCount": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,26 +1,20 @@
-window.initializeSurvey = function (surveyJsonString, dotnetHelper) {
+window.loadSurveyFromFile = async function (url, dotnetHelper) {
     try {
-        const surveyJson = JSON.parse(surveyJsonString);
+        const response = await fetch(url);        
+        if (!response.ok) throw new Error(`Failed to load ${url}`);
+        const surveyJson = await response.json();
         const survey = new Survey.Model(surveyJson);
-        survey.onComplete.add(function (result) {
-            const surveyData = result.data;
-            const resultsJson = JSON.stringify(surveyData);
-            console.log('Survey complete, sending results:', resultsJson);
-            if (dotnetHelper) {
-                dotnetHelper.invokeMethodAsync('OnSurveyComplete', resultsJson);
-            } else {
-                console.error('dotnetHelper is undefined');
-            }
+
+        survey.onComplete.add(result => {
+            const resultsJson = JSON.stringify(result.data);
+            console.log("Survey complete:", resultsJson);
+            if (dotnetHelper) dotnetHelper.invokeMethodAsync("OnSurveyComplete", resultsJson);
         });
-        
-        const surveyContainer = document.getElementById('surveyContainer');
-        if (surveyContainer) {
-            survey.render(surveyContainer);
-        } else {
-            console.error('Survey container not found');
-        }
-        console.log('Survey initialized successfully');
-    } catch (error) {
-        console.error('Error initializing survey:', error);
+
+        const container = document.getElementById("surveyContainer");
+        if (container) survey.render(container);
+        else console.error("Survey container not found");
+    } catch (e) {
+        console.error("Error loading survey:", e);
     }
 };

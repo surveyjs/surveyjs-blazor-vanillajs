@@ -1,15 +1,18 @@
-window.initializeSurveyCreator = function (surveyJsonString, dotnetHelper) {
+window.initializeSurveyCreator = async function (url, dotnetHelper) {
     try {
-        // Register Survey Creator theme
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to load ${url}`);
+        const surveyJson = await response.json();
+
         SurveyCreatorCore.registerCreatorTheme(SurveyCreatorTheme);
 
-        // Create Survey Creator instance
         const creator = new SurveyCreator.SurveyCreator({
             showLogicTab: true,
             isAutoSave: false
         });
-        creator.text = surveyJsonString;
-        // Render it inside container
+
+        creator.JSON = surveyJson;
+
         const creatorContainer = document.getElementById("surveyCreatorContainer");
         if (creatorContainer) {
             creator.render(creatorContainer);
@@ -17,17 +20,13 @@ window.initializeSurveyCreator = function (surveyJsonString, dotnetHelper) {
             console.error("Survey Creator container not found");
         }
 
-        // Callback when survey definition changes
         creator.saveSurveyFunc = (no, callback) => {
-            const surveyJson = JSON.stringify(creator.JSON);
-            console.log("Survey saved:", surveyJson);
+            const jsonString = JSON.stringify(creator.JSON);
+            console.log("Survey saved:", jsonString);
 
             if (dotnetHelper) {
-                dotnetHelper.invokeMethodAsync("OnSurveySaved", surveyJson)
-                    .then(() => {
-                        // Let Creator know the save succeeded
-                        callback(no, true);
-                    })
+                dotnetHelper.invokeMethodAsync("OnSurveySaved", jsonString)
+                    .then(() => callback(no, true))
                     .catch(err => {
                         console.error("Error calling .NET OnSurveySaved:", err);
                         callback(no, false);
@@ -38,8 +37,8 @@ window.initializeSurveyCreator = function (surveyJsonString, dotnetHelper) {
             }
         };
 
-        console.log("Survey Creator initialized successfully");
+        console.log("Survey Creator initialized successfully from file");
     } catch (error) {
-        console.error("Error initializing Survey Creator:", error);
+        console.error("Error loading Survey Creator:", error);
     }
 };
