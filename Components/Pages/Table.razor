@@ -1,16 +1,14 @@
-﻿@page "/tabulator"
+﻿@page "/table"
 @using System.Text.Json
 @rendermode InteractiveServer
 @inject IJSRuntime JSRuntime
 @implements IDisposable
 
-<h1>Survey Tabulator</h1>
-<p>Tabulator loaded</p>
 <div id="loadingIndicator">Loading...</div>
 <div id="surveyTabulatorContainer" style="width:100%; height:80vh;"></div>
 
 @code {
-    private DotNetObjectReference<Tabulator>? dotNetRef;
+    private DotNetObjectReference<Table>? dotNetRef;
 
     // Same survey JSON as Dashboard
     private string surveyJson = @"{

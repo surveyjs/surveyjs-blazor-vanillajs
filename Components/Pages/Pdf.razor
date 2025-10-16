@@ -1,31 +1,30 @@
-﻿@page "/dashboard"
+﻿@page "/pdf"
 @rendermode InteractiveServer
 @inject IJSRuntime JSRuntime
 @implements IDisposable
 
-<div id="surveyDashboardContainer" style="width:100%; height:80vh;"></div>
+<div id="surveyPdfContainer" style="width:100%; height:100%;"></div>
 
 @code {
-    private DotNetObjectReference<Dashboard>? dotNetRef;
+    private DotNetObjectReference<Pdf>? dotNetRef;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             dotNetRef = DotNetObjectReference.Create(this);
-            
             await JSRuntime.InvokeVoidAsync(
-                "initializeSurveyDashboard",
-                "/data/dashboard_json.json",
+                "initializeSurveyPdf",
+                "/data/survey_json.json",                
                 dotNetRef
             );
         }
     }
 
     [JSInvokable]
-    public Task OnDashboardRendered()
+    public Task OnSurveyPdfRendered()
     {
-        Console.WriteLine("Dashboard rendered callback received in Blazor");
+        Console.WriteLine("Survey PDF rendered callback received in Blazor");
         return Task.CompletedTask;
     }
 

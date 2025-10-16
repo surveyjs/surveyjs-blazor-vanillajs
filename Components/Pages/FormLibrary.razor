@@ -1,29 +1,22 @@
-﻿@page "/form"
+﻿@page "/run"
 @rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Form</PageTitle>
 
-<h1>SurveyJS Form</h1>
 <div id="surveyContainer"></div>
 
 @code {
-    private DotNetObjectReference<Form>? dotNetRef;
-
-    private string surveyJson = @"{
-        ""elements"": [
-            { ""name"": ""FirstName"", ""title"": ""Enter your first name:"", ""type"": ""text"" },
-            { ""name"": ""LastName"", ""title"": ""Enter your last name:"", ""type"": ""text"" }
-        ]
-    }";
+    private DotNetObjectReference<FormLibrary>? dotNetRef;   
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             dotNetRef = DotNetObjectReference.Create(this);
-            await JSRuntime.InvokeVoidAsync("initializeSurvey", surveyJson, dotNetRef);
+            
+            await JSRuntime.InvokeVoidAsync("loadSurveyFromFile", "/data/survey_json.json", dotNetRef);
         }
     }
 
