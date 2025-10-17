@@ -14,11 +14,10 @@ This project uses SurveyJS Vanilla JS packages without any specific frontend fra
 ```bash
 git clone https://github.com/surveyjs/surveyjs-vanillajs-blazor.git
 cd surveyjs-vanillajs-blazor
-npm i
 dotnet run
 ```
 
-Open http://localhost:7219/ in your web browser.
+Open http://localhost:5008/ in your web browser.
 
 > NOTE: This application uses [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0). Make sure that you have ASP.NET Core Runtime 8.0 installed on your machine.
 
@@ -29,9 +28,9 @@ This template covers most basic use cases. You can find code examples for them i
 - Create a standalone survey
   - [wwwroot/js/survey.js](wwwroot/js/survey.js)
 - Add Survey Form Builder to a page
-  - [wwwroot/js/formBuilder.js](wwwroot/js/formBuilder.js)
+  - [wwwroot/js/creator.js](wwwroot/js/creator.js)
 - Export a survey to a PDF document
-  - [wwwroot/js/pdfSurvey.js](wwwroot/js/pdfSurvey.js)
+  - [wwwroot/js/pdf-generator.js](wwwroot/js/pdf-generator.js)
 - Visualize survey results
   - As charts
     - [wwwroot/js/survey.js](wwwroot/js/dashboard.js)
@@ -40,16 +39,16 @@ This template covers most basic use cases. You can find code examples for them i
 
 Razor components that render SurveyJS components:
 - Create a standalone survey
-  - [Form.razor](Components/Pages/Form.razor)
+  - [FormLibrary.razor](Components/Pages/FormLibrary.razor)
 - Add Survey Form Builder to a page
-  - [FormBuilder.razor](Components/Pages/FormBuilder.razor)
+  - [Creator.razor](Components/Pages/Creator.razor)
 - Export a survey to a PDF document
-  - [SurveyPDF.razor](Components/Pages/SurveyPDF.razor)
+  - [Pdf.razor](Components/Pages/Pdf.razor)
 - Visualize survey results
   - As charts
     - [Dashboard.razor](Components/Pages/Dashboard.razor)
   - As a table
-    - [Tabulator.razor](Components/Pages/Tabulator.razor)
+    - [Table.razor](Components/Pages/Table.razor)
 
 ## How to integrate SurveyJS components into your Blazor application
 
