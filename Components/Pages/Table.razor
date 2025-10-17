@@ -15,7 +15,7 @@
             dotNetRef = DotNetObjectReference.Create(this);
             await JSRuntime.InvokeVoidAsync(
                 "initializeSurveyTabulator",
-                "/data/dashboard_json.json"                
+                "/data/dashboard_json.json",
                 dotNetRef
             );
         }
