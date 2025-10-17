@@ -1,22 +1,20 @@
-window.initializeSurveyTabulator = function (surveyJsonString, surveyDataJsonString, dotnetHelper) {
+window.initializeSurveyTabulator = async function (surveyJsonUrl, surveyDataUrl, dotnetHelper) {
     try {
-        const json = JSON.parse(surveyJsonString);
-        const dataFromServer = Array.isArray(surveyDataJsonString) ? surveyDataJsonString : JSON.parse(surveyDataJsonString);
+        const surveyResponse = await fetch(surveyJsonUrl);
+        if (!surveyResponse.ok) throw new Error(`Failed to load ${surveyJsonUrl}`);
+        const surveyJson = await surveyResponse.json();        
 
-        const survey = new Survey.Model(json);
+        const survey = new Survey.Model(surveyJson);
+        const tabulator = new SurveyAnalyticsTabulator.Tabulator(survey, window.surveyResults);
 
-        // Simulate async server load
-        setTimeout(() => {
-            const vizPanel = new SurveyAnalyticsTabulator.Tabulator(survey, dataFromServer);
-            const loadingEl = document.getElementById("loadingIndicator");
-            if (loadingEl) loadingEl.style.display = "none";
+        const loadingEl = document.getElementById("loadingIndicator");
+        if (loadingEl) loadingEl.style.display = "none";
 
-            vizPanel.render("surveyTabulatorContainer");
+        tabulator.render("surveyTabulatorContainer");
 
-            if (dotnetHelper) {
-                dotnetHelper.invokeMethodAsync("OnTabulatorRendered");
-            }
-        }, 500);
+        if (dotnetHelper) {
+            dotnetHelper.invokeMethodAsync("OnTabulatorRendered");
+        }
 
         console.log("Survey Tabulator initialized successfully");
     } catch (error) {

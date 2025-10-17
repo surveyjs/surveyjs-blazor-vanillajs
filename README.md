@@ -33,7 +33,7 @@ This template covers most basic use cases. You can find code examples for them i
   - [wwwroot/js/pdf-generator.js](wwwroot/js/pdf-generator.js)
 - Visualize survey results
   - As charts
-    - [wwwroot/js/survey.js](wwwroot/js/dashboard.js)
+    - [wwwroot/js/dashboard.js](wwwroot/js/dashboard.js)
   - As a table
     - [wwwroot/js/tabulator.js](wwwroot/js/tabulator.js)
 
