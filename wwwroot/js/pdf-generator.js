@@ -5,7 +5,7 @@ window.initializeSurveyPdf = async function (surveyJsonUrl, dotnetHelper) {
         const surveyJson = await surveyResponse.json();
         
         const survey = new Survey.Model(surveyJson);
-        //survey.data = surveyData;
+        // survey.data = surveyData;
 
         const container = document.getElementById("surveyPdfContainer");
         if (!container) {
@@ -29,6 +29,7 @@ window.initializeSurveyPdf = async function (surveyJsonUrl, dotnetHelper) {
                 surveyPDF.save("surveyResult.pdf");
             }
         });
+        survey.navigationButtonsLocation = "top";
 
         if (dotnetHelper) {
             dotnetHelper.invokeMethodAsync("OnSurveyPdfRendered");

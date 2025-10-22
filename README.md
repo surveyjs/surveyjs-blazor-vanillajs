@@ -1,19 +1,19 @@
-# Integrate pure HTML/JS/CSS SurveyJS libraries into Blazor 
+# SurveyJS + Blazor + Vanilla JS Quickstart Template
 
-SurveyJS is a set of JavaScript components that allow you and your users to build surveys / forms, store them in your database, and visualize survey results for data analysis. This quick start template shows how to integrate pure HTML/JS/CSS SurveyJS components into a Blazor application:
+SurveyJS is a set of JavaScript components that allow you and your users to build surveys / forms, store them in your database, and visualize survey results for data analysis. This quick start template shows how to integrate the following SurveyJS components into a Blazor application without using any front-end framework:
 
 - [SurveyJS Form Library](https://surveyjs.io/form-library/documentation/overview)
 - [Survey Creator / Form Builder](https://surveyjs.io/survey-creator/documentation/overview)
 - [SurveyJS PDF Generator](https://surveyjs.io/pdf-generator/documentation/overview)
 - [SurveyJS Dashboard](https://surveyjs.io/dashboard/documentation/overview)
 
-This project uses SurveyJS Vanilla JS packages without any specific frontend framework. If you wish to use a particular frontend framework, refer to corresponding integration tutorial for your JavaScript platform.
+> SurveyJS also supports integrations with React, Angular, Vue 3, and jQuery. Refer to the following repository for an example with React: [SurveyJS + Blazor + React Quickstart Template](https://github.com/surveyjs/surveyjs-blazor).
 
 ## Run the application
 
 ```bash
-git clone https://github.com/surveyjs/surveyjs-vanillajs-blazor.git
-cd surveyjs-vanillajs-blazor
+git clone https://github.com/surveyjs/surveyjs-blazor-vanillajs.git
+cd surveyjs-blazor-vanillajs
 dotnet run
 ```
 
@@ -26,39 +26,36 @@ Open http://localhost:5008/ in your web browser.
 This template covers most basic use cases. You can find code examples for them in the following files:
 
 - Create a standalone survey
+  - [wwwroot/data/survey_json.js](wwwroot/data/survey_json.js)
   - [wwwroot/js/survey.js](wwwroot/js/survey.js)
-- Add Survey Form Builder to a page
+  - [Components/Pages/FormLibrary.razor](Components/Pages/FormLibrary.razor)
+- Add Survey Creator to a page
   - [wwwroot/js/creator.js](wwwroot/js/creator.js)
+  - [Components/Pages/Creator.razor](Components/Pages/Creator.razor)
 - Export a survey to a PDF document
   - [wwwroot/js/pdf-generator.js](wwwroot/js/pdf-generator.js)
+  - [Components/Pages/Pdf.razor](Components/Pages/Pdf.razor)
 - Visualize survey results
   - As charts
+    - [wwwroot/data/dashboard_json.js](wwwroot/data/dashboard_json.json)
+    - [wwwroot/data/survey_data.js](wwwroot/data/survey_data.js)
     - [wwwroot/js/dashboard.js](wwwroot/js/dashboard.js)
+    - [Components/Pages/Dashboard.razor](Components/Pages/Dashboard.razor)
   - As a table
+    - [wwwroot/data/dashboard_json.js](wwwroot/data/dashboard_json.json)
+    - [wwwroot/data/survey_data.js](wwwroot/data/survey_data.js)
     - [wwwroot/js/tabulator.js](wwwroot/js/tabulator.js)
-
-Razor components that render SurveyJS components:
-- Create a standalone survey
-  - [FormLibrary.razor](Components/Pages/FormLibrary.razor)
-- Add Survey Form Builder to a page
-  - [Creator.razor](Components/Pages/Creator.razor)
-- Export a survey to a PDF document
-  - [Pdf.razor](Components/Pages/Pdf.razor)
-- Visualize survey results
-  - As charts
-    - [Dashboard.razor](Components/Pages/Dashboard.razor)
-  - As a table
-    - [Table.razor](Components/Pages/Table.razor)
+    - [Components/Pages/Table.razor](Components/Pages/Table.razor)
 
 ## How to integrate SurveyJS components into your Blazor application
 
-SurveyJS components can be used in a frameworkless application or within an Angular, React, and Vue.js. You can integrate SurveyJS into a Blazor application that already uses one of these JavaScript frameworks/libraries or into one that doesn't use any of them. In this demo, we do not use any specific JS framework.
+Refer to the following SurveyJS help topics:
 
-- [JavaScript Form Library](https://surveyjs.io/form-library/documentation/get-started-html-css-javascript)
-- [Add Survey Creator / Form Builder to a JavaScript Application](https://surveyjs.io/survey-creator/documentation/get-started-html-css-javascript)
-- [Add SurveyJS Dashboard to a JavaScript Application](https://surveyjs.io/dashboard/documentation/get-started-html-css-javascript)
-- [Table View for Survey Results in a JavaScript Application](https://surveyjs.io/dashboard/documentation/set-up-table-view/html-css-javascript)
-- [Export Survey to PDF in a JavaScript Application](https://surveyjs.io/pdf-generator/documentation/get-started-html-css-javascript)
+- [Form Library](https://surveyjs.io/form-library/documentation/get-started-html-css-javascript)
+- [Survey Creator / Form Builder](https://surveyjs.io/survey-creator/documentation/get-started-html-css-javascript)
+- [Dashboard](https://surveyjs.io/dashboard/documentation/get-started-html-css-javascript)
+- [Table View for Survey Results](https://surveyjs.io/dashboard/documentation/set-up-table-view/html-css-javascript)
+- [PDF Generator](https://surveyjs.io/pdf-generator/documentation/get-started-html-css-javascript)
 
 ## SurveyJS Resources
 
