@@ -7,11 +7,11 @@ window.initializeSurveyDashboard = async function (surveyJsonUrl, dotnetHelper) 
         
         const survey = new Survey.Model(surveyJson);
 
-        const vizPanel = new SurveyAnalytics.VisualizationPanel(
-            survey.getAllQuestions(),
-            window.surveyResults
-        );
-        vizPanel.render("surveyDashboardContainer");
+        const dashboard = new SurveyAnalytics.Dashboard({
+            questions: survey.getAllQuestions(),
+            data: window.surveyResults
+        });
+        dashboard.render("surveyDashboardContainer");
 
         if (dotnetHelper) {
             dotnetHelper.invokeMethodAsync("OnDashboardRendered");

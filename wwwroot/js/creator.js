@@ -4,7 +4,7 @@ window.initializeSurveyCreator = async function (url, dotnetHelper) {
         if (!response.ok) throw new Error(`Failed to load ${url}`);
         const surveyJson = await response.json();
 
-        SurveyCreatorCore.registerCreatorTheme(SurveyCreatorTheme);
+        SurveyCreatorCore.registerCreatorTheme(SurveyTheme);
 
         const creator = new SurveyCreator.SurveyCreator({
             showLogicTab: true,
