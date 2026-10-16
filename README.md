@@ -19,7 +19,18 @@ dotnet run
 
 Open http://localhost:5008/ in your web browser.
 
-> NOTE: This application uses [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0). Make sure that you have ASP.NET Core Runtime 8.0 installed on your machine.
+> NOTE: This application uses [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0). Make sure that you have the .NET 10 SDK installed on your machine.
+
+SurveyJS scripts and styles come from NuGet packages (SurveyJS 3.2.1). The project references:
+
+| Product | NuGet packages |
+| --- | --- |
+| Form Library | [SurveyJS](https://www.nuget.org/packages/SurveyJS), [SurveyJS.Core](https://www.nuget.org/packages/SurveyJS.Core), [SurveyJS.JsUi](https://www.nuget.org/packages/SurveyJS.JsUi) |
+| Survey Creator | [SurveyJS.Creator](https://www.nuget.org/packages/SurveyJS.Creator), [SurveyJS.Creator.Core](https://www.nuget.org/packages/SurveyJS.Creator.Core), [SurveyJS.Creator.JsUi](https://www.nuget.org/packages/SurveyJS.Creator.JsUi) |
+| Dashboard | [SurveyJS.Analytics](https://www.nuget.org/packages/SurveyJS.Analytics) |
+| PDF Generator | [SurveyJS.Pdf](https://www.nuget.org/packages/SurveyJS.Pdf) |
+
+`Components/App.razor` loads those assets from `_content/`. Chart.js, Tabulator, jsPDF, jsPDF-AutoTable, and SheetJS are not part of the SurveyJS packages, so the page still loads them from a CDN.
 
 ## Template structure
 

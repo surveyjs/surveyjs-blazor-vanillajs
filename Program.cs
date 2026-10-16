@@ -1,11 +1,12 @@
 using BlazorApp_SurveyJSFormLibrary.Components;
+using Microsoft.AspNetCore.Components.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-builder.Services.AddServerSideBlazor().AddCircuitOptions(options =>
+builder.Services.Configure<CircuitOptions>(options =>
 {
     options.DetailedErrors = true;
 });
@@ -22,9 +23,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
 app.UseAntiforgery();
 
+app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 

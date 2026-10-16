@@ -5,55 +5,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="BlazorApp-SurveyJSFormLibrary.styles.css" />
+    <ResourcePreloader />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="@Assets["bootstrap/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["BlazorApp-SurveyJSFormLibrary.styles.css"]" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    
-    @* Form Library/Core resources *@
-    <script src="https://unpkg.com/survey-core@3.0.3/survey.core.min.js"></script>
-    <script src="https://unpkg.com/survey-core@3.0.3/survey.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-core@3.0.3/themes/index.min.js"></script>
-    <script src="https://unpkg.com/survey-js-ui@3.0.3/survey-js-ui.min.js"></script>
 
-    @* Creator Resources *@
-    <script src="https://unpkg.com/survey-creator-core@3.0.3/survey-creator-core.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-core@3.0.3/survey-creator-core.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-js@3.0.3/survey-creator-js.min.js"></script>
+    @* Form Library resources from SurveyJS and SurveyJS.JsUi *@
+    <link rel="stylesheet" href="@Assets["_content/SurveyJS.Core/survey-core.min.css"]" />
+    <script src="@Assets["_content/SurveyJS.Core/survey.core.min.js"]"></script>
+    <script src="@Assets["_content/SurveyJS.Core/survey.i18n.min.js"]"></script>
+    <script src="@Assets["_content/SurveyJS.Core/themes/index.min.js"]"></script>
+    <script src="@Assets["_content/SurveyJS.JsUi/survey-js-ui.min.js"]"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/survey-core@3.0.3/survey-core.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/survey-creator-core@3.0.3/survey-creator-core.min.css" />
-    
-    @* PDF *@
-    <script src="https://unpkg.com/jspdf@4.0.0/dist/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/survey-pdf@3.0.3/survey.pdf.min.js"></script>
+    @* Survey Creator resources *@
+    <link rel="stylesheet" href="@Assets["_content/SurveyJS.Creator.Core/survey-creator-core.min.css"]" />
+    <script src="@Assets["_content/SurveyJS.Creator.Core/survey-creator-core.min.js"]"></script>
+    <script src="@Assets["_content/SurveyJS.Creator.Core/survey-creator-core.i18n.min.js"]"></script>
+    <script src="@Assets["_content/SurveyJS.Creator.JsUi/survey-creator-js.min.js"]"></script>
 
-    @* Tabulator *@
+    @* PDF Generator. jsPDF is not included in SurveyJS.Pdf. *@
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js"></script>
+    <script src="@Assets["_content/SurveyJS.Pdf/survey.pdf.min.js"]"></script>
+
+    @* Table View. Tabulator, jsPDF-AutoTable, and SheetJS are not included in SurveyJS.Analytics. *@
     <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
     <script src="https://unpkg.com/jspdf-autotable@3.5.20/dist/jspdf.plugin.autotable.min.js"></script>
     <script src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
-    <script src="https://unpkg.com/survey-analytics@3.0.3/survey.analytics.tabulator.min.js"></script>
+    <script src="@Assets["_content/SurveyJS.Analytics/survey.analytics.tabulator.min.js"]"></script>
     <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/survey-analytics@3.0.3/survey.analytics.tabulator.min.css" />
+    <link rel="stylesheet" href="@Assets["_content/SurveyJS.Analytics/survey.analytics.tabulator.min.css"]" />
 
-    @* Dashboard (Chart.js is the default charting engine in v3) *@
-    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-    <script src="https://unpkg.com/survey-analytics@3.0.3/survey.analytics.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/survey-analytics@3.0.3/survey.analytics.min.css" />
+    @* Dashboard. Chart.js is not included in SurveyJS.Analytics. *@
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="@Assets["_content/SurveyJS.Analytics/survey.analytics.min.js"]"></script>
+    <link rel="stylesheet" href="@Assets["_content/SurveyJS.Analytics/survey.analytics.min.css"]" />
 
-    <script src="js/survey.js"></script>
-    <script src="js/creator.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/tabulator.js"></script>
-    <script src="js/pdf-generator.js"></script>
-    <script src="data/survey_data.js"></script>
-    
+    <script src="@Assets["js/survey.js"]"></script>
+    <script src="@Assets["js/creator.js"]"></script>
+    <script src="@Assets["js/dashboard.js"]"></script>
+    <script src="@Assets["js/tabulator.js"]"></script>
+    <script src="@Assets["js/pdf-generator.js"]"></script>
+    <script src="@Assets["data/survey_data.js"]"></script>
+
+    <ImportMap />
     <HeadOutlet />
 </head>
 
 <body>
     <Routes />
-    <script src="_framework/blazor.web.js"></script>
+    <script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>

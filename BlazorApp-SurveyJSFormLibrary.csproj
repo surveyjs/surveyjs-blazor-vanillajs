@@ -1,10 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>BlazorApp-SurveyJSFormLibrary</RootNamespace>
     <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SurveyJS" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Core" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.JsUi" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Creator" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Creator.Core" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Creator.JsUi" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Analytics" Version="3.2.1" />
+    <PackageReference Include="SurveyJS.Pdf" Version="3.2.1" />
+  </ItemGroup>
 </Project>
